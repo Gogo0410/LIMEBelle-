@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テキスト生成アプリ</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .input-group, .output-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .output {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .output span {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            padding: 8px;
+            background-color: #f9f9f9;
+        }
+        .copy-btn {
+            padding: 8px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>店名入力</h2>
+    <div class="input-group">
+        <input type="text" id="storeName" placeholder="ここに店名を入力してください">
+    </div>
+
+    <hr>
+
+    <div class="output-group">
+        <div class="output">
+            <span id="output1">【ハーブピーリング|ニキビケア】韓国肌管理Belle </span>
+            <button class="copy-btn" onclick="copyText('output1')">コピー</button>
+        </div>
+        <div class="output">
+            <span id="output2">韓国肌管理Belle </span>
+            <button class="copy-btn" onclick="copyText('output2')">コピー</button>
+        </div>
+        <div class="output">
+            <span id="output3">LIME </span>
+            <button class="copy-btn" onclick="copyText('output3')">コピー</button>
+        </div>
+        <div class="output">
+            <span id="output4">【ハーブピーリング専門】LIME </span>
+            <button class="copy-btn" onclick="copyText('output4')">コピー</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const storeNameInput = document.getElementById('storeName');
+
+    const output1 = document.getElementById('output1');
+    const output2 = document.getElementById('output2');
+    const output3 = document.getElementById('output3');
+    const output4 = document.getElementById('output4');
+
+    const baseText1 = "【ハーブピーリング|ニキビケア】韓国肌管理Belle ";
+    const baseText2 = "韓国肌管理Belle ";
+    const baseText3 = "LIME ";
+    const baseText4 = "【ハーブピーリング専門】LIME ";
+
+    storeNameInput.addEventListener('input', (event) => {
+        const storeName = event.target.value;
+        output1.textContent = baseText1 + storeName;
+        output2.textContent = baseText2 + storeName;
+        output3.textContent = baseText3 + storeName;
+        output4.textContent = baseText4 + storeName;
+    });
+
+    function copyText(elementId) {
+        const textToCopy = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('コピーしました！');
+        }).catch(err => {
+            console.error('コピーに失敗しました: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
